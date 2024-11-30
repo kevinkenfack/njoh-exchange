@@ -38,7 +38,7 @@ const HeroSection = () => (
             Transfert d'argent <span className="text-yellow-400">rapide et sûr</span>
           </h1>
           <p className="text-slate-300 text-xl mb-8">
-            Envoyez de l'argent en toute sécurité partout dans le monde avec les meilleurs taux.
+            Envoyez de l'argent en toute sécurité de l'europe vers le cameroun avec les meilleurs taux.
           </p>
           <button className="bg-yellow-400 text-slate-900 px-8 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-colors flex items-center gap-2">
             Commencer maintenant

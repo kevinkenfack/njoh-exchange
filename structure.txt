@@ -1,0 +1,41 @@
+Njoh-Exchange
+├── public
+│   ├── favicon.png
+│   ├── logo.png
+│   └── vite.svg
+├── src
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── AdvantagesSection.jsx
+│   │   ├── ContactForm.jsx
+│   │   ├── CTASection.jsx
+│   │   ├── FAQSection.jsx
+│   │   ├── Footer.jsx
+│   │   ├── HeroSection.jsx
+│   │   ├── LandingPage.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── ProcessSection.jsx
+│   │   ├── ServicesSection.jsx
+│   │   ├── TestimonialsSection.jsx
+│   ├── hooks
+│   │   └── useScrollEffect.jsx
+│   ├── utils
+│   │   └── animations.js
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── vite-env.d.ts
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── postcss.config.cjs
+├── README.md
+├── structure.txt
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.js
