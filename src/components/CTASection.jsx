@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-const CTASection: React.FC = () => {
+const CTASection = () => {
   return (
     <section id="cta" className="py-24 relative bg-slate-900">
       {/* Background Elements */}
