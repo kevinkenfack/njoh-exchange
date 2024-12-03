@@ -1,284 +1,363 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  ArrowRight, Send, Calculator, Shield, Clock, CreditCard, 
-  ChevronDown, CheckCircle, MessageCircle, MapPin 
-} from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, Phone, MessageSquare, Mail, MapPin, Coins, ArrowRightLeft, Shield, Wallet, Clock, Users, Award, ChevronDown } from 'lucide-react';
 
-// Navbar Component
-const Navbar = ({ scrolled }) => (
-  <nav className={`fixed w-full z-50 transition-all duration-300 ${
-    scrolled ? 'bg-slate-900/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-  }`}>
-    <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-      <div className="text-yellow-400 text-2xl font-bold">Njoh Exchange</div>
-      <div className="flex gap-6">
-        <a href="#services" className="text-white hover:text-yellow-400 transition-colors">Services</a>
-        <a href="#advantages" className="text-white hover:text-yellow-400 transition-colors">Avantages</a>
-        <a href="#process" className="text-white hover:text-yellow-400 transition-colors">Processus</a>
-        <a href="#contact" className="text-white hover:text-yellow-400 transition-colors">Contact</a>
-      </div>
-    </div>
-  </nav>
-);
-
-// Hero Section Component
-const HeroSection = () => (
-  <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900"/>
-    <div className="container mx-auto px-6 relative z-10">
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-      >
-        <div>
-          <h1 className="text-5xl font-bold text-white mb-6">
-            Transfert d'argent <span className="text-yellow-400">rapide et sûr</span>
-          </h1>
-          <p className="text-slate-300 text-xl mb-8">
-            Envoyez de l'argent en toute sécurité de l'europe vers le cameroun avec les meilleurs taux.
-          </p>
-          <button className="bg-yellow-400 text-slate-900 px-8 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-colors flex items-center gap-2">
-            Commencer maintenant
-            <ArrowRight />
-          </button>
-        </div>
-
-        {/* Flags Visual */}
-        <div className="flex justify-center items-center space-x-4">
-          <img 
-            src="/api/placeholder/150/100" 
-            alt="Cameroun Flag" 
-            className="w-24 h-16 object-cover rounded-lg shadow-lg"
-          />
-          <ChevronDown className="text-yellow-400 w-12 h-12" />
-          <img 
-            src="/api/placeholder/150/100" 
-            alt="European Flags" 
-            className="w-24 h-16 object-cover rounded-lg shadow-lg"
-          />
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
-
-// Services Component
-const ServicesSection = () => {
-  const services = [
-    {
-      icon: <Send className="w-12 h-12 text-yellow-400" />,
-      title: "Transfert d'argent",
-      description: "Envoyez de l'argent rapidement et en toute sécurité"
-    },
-    {
-      icon: <CreditCard className="w-12 h-12 text-yellow-400" />,
-      title: "Exchange Payon",
-      description: "Échangez vos devises aux meilleurs taux"
-    },
-    {
-      icon: <Calculator className="w-12 h-12 text-yellow-400" />,
-      title: "Crypto-monnaies",
-      description: "Achetez et vendez des crypto-monnaies"
-    }
-  ];
-
-  return (
-    <section id="services" className="py-20 bg-slate-800/50">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Nos Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div 
-              key={index} 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-lg p-6 rounded-xl border border-white/10 hover:border-yellow-400/50 transition-all group"
-            >
-              {service.icon}
-              <h3 className="text-xl font-bold text-white mt-4 mb-2">{service.title}</h3>
-              <p className="text-slate-300">{service.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Process Section Component
-const ProcessSection = () => {
-  const processSteps = [
-    {
-      step: "Étape 1",
-      title: "Créer un compte",
-      description: "Inscription rapide et sécurisée"
-    },
-    {
-      step: "Étape 2",
-      title: "Sélectionner le service",
-      description: "Choisissez votre type de transfert"
-    },
-    {
-      step: "Étape 3",
-      title: "Confirmer le transfert",
-      description: "Validation et envoi instantané"
-    }
-  ];
-
-  return (
-    <section id="process" className="py-20">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Notre Processus</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {processSteps.map((step, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.3, duration: 0.5 }}
-              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-center"
-            >
-              <div className="bg-yellow-400 text-slate-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-yellow-400 mb-2">{step.step}</h3>
-              <h4 className="text-lg font-semibold text-white mb-2">{step.title}</h4>
-              <p className="text-slate-300">{step.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Testimonials Section Component
-const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "Jean Dupont",
-      message: "Njoh Exchange m'a permis d'envoyer de l'argent rapidement et sans frais.",
-      location: "Paris, France"
-    },
-    {
-      name: "Marie Ngo",
-      message: "Un service client excellent et des taux très compétitifs.",
-      location: "Douala, Cameroun"
-    }
-  ];
-
-  return (
-    <section id="testimonials" className="py-20 bg-slate-800/50">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Témoignages</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.3, duration: 0.5 }}
-              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20"
-            >
-              <MessageCircle className="w-12 h-12 text-yellow-400 mb-4" />
-              <p className="text-slate-300 italic mb-4">"{testimonial.message}"</p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="font-bold text-white">{testimonial.name}</h4>
-                  <p className="text-slate-400 flex items-center">
-                    <MapPin className="w-4 h-4 mr-2" /> {testimonial.location}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Footer Component
-const Footer = () => (
-  <footer className="bg-slate-900 py-8 text-center">
-    <div className="container mx-auto px-6">
-      <p className="text-slate-300 mb-4">
-        © {new Date().getFullYear()} Njoh Exchange. Tous droits réservés.
-      </p>
-      <div className="flex justify-center space-x-4">
-        <a href="#" className="text-white hover:text-yellow-400">Mentions Légales</a>
-        <a href="#" className="text-white hover:text-yellow-400">Politique de Confidentialité</a>
-      </div>
-    </div>
-  </footer>
-);
-
-// Main Landing Page Component
-const LandingPage = () => {
+const NjohExchangeDashboard = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const services = [
+    {
+      name: "Transfert d'Argent",
+      icon: <ArrowRightLeft className="w-6 h-6 text-yellow-500" />,
+      description: "Envoyez de l'argent de l'Europe vers le Cameroun en toute sécurité. Profitez de nos taux compétitifs et de transferts GRATUITS vers vos proches.",
+      color: "from-yellow-500/10 to-yellow-600/10"
+    },
+    {
+      name: "Exchange Payon",
+      icon: <Coins className="w-6 h-6 text-blue-500" />,
+      description: "Service de change rapide et fiable. Obtenez les meilleurs taux du marché pour vos opérations de change entre l'Euro et le Franc CFA.",
+      color: "from-blue-500/10 to-blue-600/10"
+    },
+    {
+      name: "Crypto-monnaies",
+      icon: <Wallet className="w-6 h-6 text-purple-500" />,
+      description: "Achetez et vendez vos crypto-monnaies en toute sécurité. Nous proposons une plateforme fiable pour vos transactions en cryptomonnaies.",
+      color: "from-purple-500/10 to-purple-600/10"
+    },
+    {
+      name: "Service Express",
+      icon: <Clock className="w-6 h-6 text-green-500" />,
+      description: "Transferts rapides et sécurisés. Vos proches reçoivent l'argent en quelques minutes, avec confirmation instantanée.",
+      color: "from-green-500/10 to-green-600/10"
+    }
+  ];
+
+  const contactChannels = [
+    { 
+      name: 'WhatsApp', 
+      icon: <MessageSquare className="w-5 h-5" />, 
+      number: '+237 XXX XXX XXX',
+      color: 'from-green-500/20 to-green-600/20' 
+    },
+    { 
+      name: 'Téléphone', 
+      icon: <Phone className="w-5 h-5" />, 
+      number: '+237 XXX XXX XXX',
+      color: 'from-blue-500/20 to-blue-600/20' 
+    },
+    { 
+      name: 'Email', 
+      icon: <Mail className="w-5 h-5" />, 
+      number: 'contact@njohexchange.com',
+      color: 'from-red-500/20 to-red-600/20' 
+    }
+  ];
+
+  const advantageImages = [
+    { src: "/euro-flag.jpg", alt: "Europe" },
+    { src: "/cameroon-flag.jpg", alt: "Cameroun" },
+    { src: "/crypto.jpg", alt: "Crypto" },
+    { src: "/exchange.jpg", alt: "Exchange" }
+  ];
+
+  const processSteps = [
+    {
+      icon: <Users className="w-6 h-6 text-yellow-500" />,
+      title: "Inscription",
+      description: "Créez votre compte en quelques minutes avec vos informations de base"
+    },
+    {
+      icon: <Shield className="w-6 h-6 text-blue-500" />,
+      title: "Vérification",
+      description: "Validez votre identité pour garantir la sécurité des transactions"
+    },
+    {
+      icon: <Wallet className="w-6 h-6 text-green-500" />,
+      title: "Transfert",
+      description: "Effectuez votre premier transfert en toute simplicité"
+    },
+    {
+      icon: <Award className="w-6 h-6 text-purple-500" />,
+      title: "Confirmation",
+      description: "Recevez une confirmation instantanée une fois le transfert effectué"
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Marie K.",
+      location: "Paris",
+      content: "Je transfère régulièrement de l'argent à ma famille au Cameroun. Njoh Exchange offre vraiment les meilleurs taux et un service client exceptionnel.",
+      rating: 5
+    },
+    {
+      name: "Jean P.",
+      location: "Douala",
+      content: "La rapidité du service est impressionnante. L'argent arrive toujours en quelques minutes, c'est vraiment pratique en cas d'urgence.",
+      rating: 5
+    },
+    {
+      name: "Sophie M.",
+      location: "Lyon",
+      content: "J'apprécie particulièrement la transparence des frais et la facilité d'utilisation de la plateforme. Service très professionnel !",
+      rating: 5
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "Quels sont les délais de transfert ?",
+      answer: "Les transferts sont généralement instantanés. Dans certains cas, ils peuvent prendre jusqu'à 10 minutes maximum."
+    },
+    {
+      question: "Quels sont les frais de transfert ?",
+      answer: "Nos transferts sont GRATUITS. Vous ne payez que le montant que vous souhaitez envoyer, sans frais cachés."
+    },
+    {
+      question: "Comment puis-je suivre mon transfert ?",
+      answer: "Vous recevez des notifications en temps réel par SMS et email à chaque étape de votre transfert."
+    },
+    {
+      question: "Quels documents sont nécessaires ?",
+      answer: "Une pièce d'identité valide et un justificatif de domicile de moins de 3 mois sont requis pour la première transaction."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-slate-900">
-      <Navbar scrolled={scrolled} />
-      <HeroSection />
-      <ServicesSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <div id="faq" className="py-20">
-        {/* FAQ Section Placeholder - Can be developed further */}
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-8">Questions Fréquentes</h2>
-          <p className="text-slate-300">Section FAQ à développer</p>
-        </div>
-      </div>
-      <section id="contact" className="py-20 bg-slate-800/50">
-        {/* Existing Contact Form from previous implementation */}
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20">
-            <h2 className="text-4xl font-bold text-white text-center mb-8">Contactez-nous</h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input 
-                  type="text" 
-                  placeholder="Nom"
-                  className="bg-white/5 border border-white/20 rounded-lg p-3 text-white w-full"
-                />
-                <input 
-                  type="email" 
-                  placeholder="Email"
-                  className="bg-white/5 border border-white/20 rounded-lg p-3 text-white w-full"
-                />
+    <div className="min-h-screen bg-gray-950 text-white">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-yellow-600/5 via-blue-600/5 to-transparent pointer-events-none" />
+        
+        {/* Navigation */}
+        <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-950/80 backdrop-blur-lg border-b border-white/5' : ''}`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="flex items-center justify-between py-4">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="relative group">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-500 to-blue-500 p-[1px] transition-transform duration-300 group-hover:scale-105">
+                      <div className="w-full h-full rounded-2xl bg-gray-950/90 flex items-center justify-center">
+                        <Coins className="w-8 h-8 text-yellow-400" />
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-yellow-500 rounded-full border-2 border-gray-950 animate-pulse" />
+                  </div>
+                  <div className="block">
+                    <h1 className="text-xl font-bold bg-gradient-to-r from-white to-yellow-400 bg-clip-text text-transparent">
+                      Njoh Exchange
+                    </h1>
+                    <p className="text-sm text-gray-400">Transferts rapides et sécurisés</p>
+                  </div>
+                </div>
               </div>
-              <textarea 
-                placeholder="Message"
-                rows={4}
-                className="bg-white/5 border border-white/20 rounded-lg p-3 text-white w-full"
-              />
-              <button className="w-full bg-yellow-400 text-slate-900 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-colors">
-                Envoyer
-              </button>
-            </form>
+            </div>
           </div>
         </div>
-      </section>
-      <Footer />
+
+        {/* Hero Section with CTA */}
+        <div className="relative pt-24 px-4 sm:px-6 pb-12 max-w-4xl mx-auto">
+          <div className="mb-12 group">
+            <div className="bg-gradient-to-br from-yellow-500/10 to-blue-500/10 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Shield className="w-6 h-6 text-yellow-500" />
+                    <span className="text-sm text-yellow-400">Transferts GRATUITS & Sécurisés</span>
+                  </div>
+                  <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-yellow-200 to-blue-200 bg-clip-text text-transparent">
+                    Envoyez de l'argent en toute confiance
+                  </h2>
+                  <p className="text-gray-300 mb-6">
+                    De l'Europe vers le Cameroun, profitez des meilleurs taux et d'un service client disponible 24/7.
+                  </p>
+                  <button 
+                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 group"
+                  >
+                    Commencer un transfert
+                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </button>
+                </div>
+                <div className="flex-1 grid grid-cols-2 gap-4">
+                  {advantageImages.map((image, index) => (
+                    <img 
+                      key={index} 
+                      src={image.src} 
+                      alt={image.alt} 
+                      className="rounded-2xl object-cover w-full h-40 hover:scale-105 transition-transform"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Process Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white via-yellow-200 to-blue-200 bg-clip-text text-transparent">
+              Notre Processus
+            </h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {processSteps.map((step, index) => (
+                <div key={index} className="relative group">
+                  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 backdrop-blur-sm border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1">
+                    <div className="flex flex-col items-center text-center gap-4">
+                      {step.icon}
+                      <h3 className="font-bold">{step.title}</h3>
+                      <p className="text-sm text-gray-400">{step.description}</p>
+                    </div>
+                  </div>
+                  {index < processSteps.length - 1 && (
+                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-gradient-to-r from-white/20 to-transparent" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Services Section */}
+          <div className="space-y-6 mb-12">
+            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white via-yellow-200 to-blue-200 bg-clip-text text-transparent">
+              Nos Services
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {services.map((service) => (
+                <div 
+                  key={service.name}
+                  className={`bg-gradient-to-br ${service.color} rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]`}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    {service.icon}
+                    <h3 className="text-xl font-bold">{service.name}</h3>
+                  </div>
+                  <p className="text-gray-300">{service.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white via-yellow-200 to-blue-200 bg-clip-text text-transparent">
+              Témoignages
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 backdrop-blur-sm border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-300 mb-4">{testimonial.content}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-400">
+                    <span>{testimonial.name}</span>
+                    <span>{testimonial.location}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white via-yellow-200 to-blue-200 bg-clip-text text-transparent">
+              Questions Fréquentes
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl backdrop-blur-sm border border-white/5"
+                >
+                  <button
+                    className="w-full p-6 text-left flex items-center justify-between"
+                    onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                  >
+                    <span className="font-medium">{item.question}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform ${
+                        openFaqIndex === index ? 'transform rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  {openFaqIndex === index && (
+                    <div className="px-6 pb-6 text-gray-300">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Location Card */}
+          <div className="mb-8 group">
+            <div className="bg-gradient-to-br from-yellow-500/5 to-blue-500/5 rounded-3xl p-6 backdrop-blur-sm border border-white/5">
+              <div className="flex items-center gap-4">
+                <MapPin className="w-6 h-6 text-yellow-500" />
+                <div>
+                  <h3 className="font-bold text-xl">Nos Bureaux</h3>
+                  <p className="text-gray-400">Cameroun & Europe</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Channels */}
+      <div className="px-4 sm:px-6 max-w-4xl mx-auto space-y-6 pb-12">
+        <h4 className="text-sm font-medium text-gray-400 tracking-wider">CONTACTEZ-NOUS</h4>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {contactChannels.map((channel) => (
+            <a
+              key={channel.name}
+              href={channel.name === 'WhatsApp' ? `https://wa.me/${channel.number.replace(/\s+/g, '')}` : channel.name === 'Email' ? `mailto:${channel.number}` : `tel:${channel.number.replace(/\s+/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 p-4 transition-all duration-300 hover:bg-white/10 hover:border-white/10 hover:-translate-y-0.5"
+            >
+              <div className={`absolute inset-0 bg-gradient-to-r ${channel.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div className="relative flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {channel.icon}
+                  <span className="font-medium">{channel.name}</span>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-gray-400 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </div>
+              <div className="text-sm text-gray-300 mt-2">{channel.number}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Coins className="w-6 h-6 text-yellow-500" />
+            <p className="text-gray-400 text-sm">Njoh Exchange</p>
+          </div>
+          <p className="text-xs text-gray-500">
+            © {new Date().getFullYear()} Njoh Exchange. Tous droits réservés.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default LandingPage;
+export default NjohExchangeDashboard;
